@@ -115,4 +115,14 @@ RUN sudo npm install -g @anthropic-ai/claude-code
 # 作業ユーザーと作業ディレクトリの設定
 # ------------------------------------------------------------
 USER $USERNAME
+# devcontainer 起動時にワークスペースへ自動 cd（ハードコードなし・動的検出）
+RUN { \
+    echo ''; \
+    echo '# devcontainer: ワークスペースディレクトリへ自動移動'; \
+    echo 'if [ "${REMOTE_CONTAINERS:-}" = "true" ] && [ "$(pwd)" = "$HOME" ]; then'; \
+    echo '    _ws=$(find "$HOME" -maxdepth 1 -mindepth 1 -type d ! -name ".*" 2>/dev/null | sort | head -1)'; \
+    echo '    [ -n "$_ws" ] && cd "$_ws"'; \
+    echo '    unset _ws'; \
+    echo 'fi'; \
+    } >> /home/$USERNAME/.bashrc
 WORKDIR /home/$USERNAME

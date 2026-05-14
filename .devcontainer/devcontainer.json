@@ -3,17 +3,14 @@
   // Claude Code 開発環境
   // ============================================================
   "name": "Claude Code開発環境",
-
   // Dockerfile を使ってコンテナをビルド
   "build": {
     "dockerfile": "Dockerfile",
     "context": ".."
   },
-
   // ワークスペースフォルダー
-  "workspaceMount": "source=${localWorkspaceFolder},target=/home/user/${localWorkspaceFolderBasename},type=bind",
+  "workspaceMount": "source=${localWorkspaceFolder},target=/home/user/${localWorkspaceFolderBasename},type=bind,z",
   "workspaceFolder": "/home/user/${localWorkspaceFolderBasename}",
-
   // リモートユーザー
   "remoteUser": "user",
   "mounts": [
@@ -25,97 +22,73 @@
     // 自作のアプリでClaudeを組み込むときに使用。それまでは削除
     //"ANTHROPIC_API_KEY": "${localEnv:ANTHROPIC_API_KEY}",
     "DISABLE_AUTOUPDATER": "1"
-  }
-  
+  },
   // ============================================================
   // VS Code 拡張機能 と エディター設定
   // ============================================================
   "customizations": {
     "vscode": {
-
       // ----------------------------------------------------------
       // 拡張機能
       // ----------------------------------------------------------
       "extensions": [
         // 日本語言語パック
         "MS-CEINTL.vscode-language-pack-ja",
-
         // アイコンテーマ
         "vscode-icons-team.vscode-icons",
-
         // スペルチェッカー
         "streetsidesoftware.code-spell-checker",
-
         // Git 強化ツール
         "eamodio.gitlens",
-
         // Git 履歴
         "donjayamanne.githistory",
-
         // インデント可視化
         "oderwat.indent-rainbow",
-
         // 全角スペース可視化
         "mosapride.zenkaku",
-
         // パス補完
         "ionutvmi.path-autocomplete",
-
         // TODO ツリー
         "Gruntfuggly.todo-tree",
-
         // コメント強調
         "aaron-bond.better-comments",
-
         // コード実行
         "formulahendry.code-runner",
-
         // Markdown オールインワン
         "yzhang.markdown-all-in-one",
-
         // Markdown Lint
         "DavidAnson.vscode-markdownlint",
-
         // Claude Code for VS Code
         "anthropic.claude-code",
-
         // PlantUML
         "jebbs.plantuml"
       ],
-
       // ----------------------------------------------------------
       // エディター設定
       // ----------------------------------------------------------
       "settings": {
         // 言語・ロケール
         "locale": "ja",
-
         // ターミナルのデフォルトシェル
         "terminal.integrated.defaultProfile.linux": "bash",
         "terminal.integrated.env.linux": {
           "LANG": "ja_JP.UTF-8",
           "TZ": "Asia/Tokyo"
         },
-
         // アイコンテーマ
         "workbench.iconTheme": "vscode-icons",
-
         // エディター基本設定
         "editor.formatOnSave": true,
         "editor.tabSize": 2,
         "editor.detectIndentation": true,
         "editor.renderWhitespace": "all",
-
         // ファイルのデフォルトエンコーディング（UTF-8）
         "files.encoding": "utf8",
         "files.autoGuessEncoding": true,
-
         // 全角スペースの可視化
         "zenkaku.enable": true,
-
         // インデントレインボー
         "indentRainbow.indicatorStyle": "light",
-
         // Code Spell Checker（日本語は除外）
         "cSpell.language": "en",
         "cSpell.enableFiletypes": [
@@ -125,7 +98,6 @@
           "markdown",
           "plaintext"
         ],
-
         // TODO Tree の設定
         "todo-tree.general.tags": [
           "TODO",
@@ -134,22 +106,58 @@
           "NOTE",
           "XXX"
         ],
-
         // Better Comments の設定
         "better-comments.tags": [
-          { "tag": "!", "color": "#FF2D00", "strikethrough": false, "underline": false, "backgroundColor": "transparent", "bold": false, "italic": false },
-          { "tag": "?", "color": "#3498DB", "strikethrough": false, "underline": false, "backgroundColor": "transparent", "bold": false, "italic": false },
-          { "tag": "//", "color": "#474747", "strikethrough": true, "underline": false, "backgroundColor": "transparent", "bold": false, "italic": false },
-          { "tag": "TODO", "color": "#FF8C00", "strikethrough": false, "underline": false, "backgroundColor": "transparent", "bold": false, "italic": false },
-          { "tag": "*", "color": "#98C379", "strikethrough": false, "underline": false, "backgroundColor": "transparent", "bold": false, "italic": false }
+          {
+            "tag": "!",
+            "color": "#FF2D00",
+            "strikethrough": false,
+            "underline": false,
+            "backgroundColor": "transparent",
+            "bold": false,
+            "italic": false
+          },
+          {
+            "tag": "?",
+            "color": "#3498DB",
+            "strikethrough": false,
+            "underline": false,
+            "backgroundColor": "transparent",
+            "bold": false,
+            "italic": false
+          },
+          {
+            "tag": "//",
+            "color": "#474747",
+            "strikethrough": true,
+            "underline": false,
+            "backgroundColor": "transparent",
+            "bold": false,
+            "italic": false
+          },
+          {
+            "tag": "TODO",
+            "color": "#FF8C00",
+            "strikethrough": false,
+            "underline": false,
+            "backgroundColor": "transparent",
+            "bold": false,
+            "italic": false
+          },
+          {
+            "tag": "*",
+            "color": "#98C379",
+            "strikethrough": false,
+            "underline": false,
+            "backgroundColor": "transparent",
+            "bold": false,
+            "italic": false
+          }
         ],
-
         // GitLens の設定
         "gitlens.codeLens.enabled": true,
-
         // Markdown All in One
         "markdown.extension.toc.updateOnSave": true,
-
         // Markdown Lint
         "markdownlint.config": {
           "MD013": false
@@ -157,19 +165,21 @@
       }
     }
   },
-
   // ============================================================
   // ポートフォワード（Webアプリ開発用）
   // ============================================================
-  "forwardPorts": [3000, 8080],
-
+  "forwardPorts": [
+    3000,
+    8080
+  ],
   // ============================================================
   // コンテナ起動後の確認コマンド
   // ============================================================
   "postCreateCommand": "echo '========================================' && echo '✅ Claude Code開発環境 起動完了' && echo '----------------------------------------' && echo '🕐 タイムゾーン :' $(date '+%Z %z') && echo '🌐 ロケール   :' $LANG && echo '🟢 Node.js    :' $(node --version) && echo '🤖 Claude Code:' $(claude --version) && echo '========================================'",
-
   // ============================================================
   // コンテナ実行オプション
   // ============================================================
-  "runArgs": ["--init"]
+  "runArgs": [
+    "--init"
+  ]
 }
