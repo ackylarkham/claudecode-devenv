@@ -1,0 +1,25 @@
+# 環境変数ファイル
+.env
+.env.local
+.env.*.local
+
+# 認証情報
+*.key
+*.pem
+*.p12
+*.pfx
+secrets/
+credentials/
+
+# ログファイル
+*.log
+logs/
+
+# Claude Code設定（ローカルのみ）
+.claude/settings.local.json
+
+# for macOS
+.DS_Store
+
+# for Windows
+Thumbs.db

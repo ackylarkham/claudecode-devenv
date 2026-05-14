@@ -1,0 +1,19 @@
+{
+  "permissions": {
+    "defaultMode": "acceptEdits",   //プロジェクト内のファイル編集は自動許可（毎回確認不要）
+    "allow": [
+      "Bash(npm run **)",
+      "Bash(npm test)",
+      "Bash(git **)",
+      "Read(.)",
+      "Edit(.)"
+    ],
+    "deny": [
+      "Bash(curl *)",               //意図しない送信を拒否
+      "Bash(wget *)",               //意図しない送信を拒否
+      "Read(.env)",                 //.envの読み取り拒否
+      "Read(.env.local)",           //.env.localの読み取り拒否
+      "Read(./secrets/**)"          //./secretの読み取り拒否
+    ]
+  }
+}

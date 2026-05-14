@@ -1,11 +1,7 @@
-# Claude Code 開発コンテナー設定
+# Claude Code 開発コンテナー・テンプレート
 
-このリポジトリーは、Claude Codeを使用した開発環境をVS Codeの開発コンテナーを使って構築するためのものです。開発コンテナーを使うことで開発環境をコンテナー内に構築し、自身の環境を汚すことなく開発を行うことができます。
+Cluade Codeを使用した開発をVS Codeの開発コンテナー(Dev Container)で行うためのテンプレートです。このテンプレートを使用してGitHubのリポジトリをを作成し、VS Codeの開発コンテナーを起動することで自身の環境から独立した開発環境を構築することができます。
 
-ディレクトリ構成は以下のとおりです。
+## 前提
 
-.devcontainer
-  devcontainer.json
-  Dockerfile
-
-.devcontainerディレクトリは隠しファイルです。
+Podman 5.8.2とPodman Desktop 1.27.1で稼働確認を行っています
