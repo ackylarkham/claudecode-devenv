@@ -15,6 +15,9 @@ credentials/
 *.log
 logs/
 
+# VS Code設定（ローカル)
+.vscode/settings.json
+
 # Claude Code設定（ローカルのみ）
 .claude/settings.local.json
 
