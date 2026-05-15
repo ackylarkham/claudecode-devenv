@@ -154,6 +154,8 @@
             "italic": false
           }
         ],
+        // ポートの自動転送を無効化（Claude Code内部ポートの蓄積を防ぐ）
+        "remote.autoForwardPorts": false,
         // GitLens の設定
         "gitlens.codeLens.enabled": true,
         // Markdown All in One
